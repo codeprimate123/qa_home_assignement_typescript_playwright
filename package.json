@@ -1,0 +1,27 @@
+{
+  "name": "qa_home_assignement_typescript_playwright",
+  "version": "1.0.0",
+  "description": "Playwright UI and API tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --project=UI-Chrome",
+    "test:ui:all": "npx playwright test --project=UI-Chrome --project=UI-Firefox --project=UI-WebKit",
+    "test:api": "npx playwright test --project='API Tests'",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "testing",
+    "e2e",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.53.2",
+    "@types/node": "^24.0.10",
+    "dotenv": "^16.4.5"
+  }
+}
