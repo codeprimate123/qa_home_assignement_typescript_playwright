@@ -2,17 +2,14 @@ import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 import type { PlaywrightTestConfig } from '@playwright/test';
 
-// Read from default ".env" file.
 dotenv.config();
 
-// Define a base configuration for UI tests to avoid repetition
 const uiBaseConfig: PlaywrightTestConfig = {
   testDir: './tests/ui',
   use: { baseURL: process.env.UI_BASE_URL },
 };
 
 export default defineConfig({
-  // Look for test files in the "tests" directory, recursively.
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -23,20 +20,12 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
   projects: [
     {
       name: 'API Tests',
       testDir: './tests/api',
-      use: {
-        baseURL: process.env.API_BASE_URL,
-        // Sets the Authorization header for all API requests in this project
-        extraHTTPHeaders: {
-          'Authorization': `Bearer ${process.env.API_TOKEN}`,
-        },
-      },
+      use: { baseURL: 'https://petstore.swagger.io' },
     },
-    // UI Tests - One project for each browser
     {
       name: 'UI-Chrome',
       ...uiBaseConfig,

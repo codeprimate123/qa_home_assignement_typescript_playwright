@@ -61,10 +61,11 @@ test.describe('Login Functionality', () => {
     const dashboardPage = new DashboardPage(page);
     const username = process.env.UI_USERNAME!;
 
+    await loginPage.goto();
     await loginPage.inputUsername(username);
     await loginPage.loginButton.click();
 
-    await expect(loginPage.usernameError).toHaveText('Required');
+    await expect(loginPage.passwordError).toHaveText('Required');
     await expect(dashboardPage.dashboardHeading).not.toBeVisible();
-    });
+  });
 });
